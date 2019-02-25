@@ -4,10 +4,10 @@ var taille_menu_gauche = ""
 var taille_menu_droit = "";
 var action_utilisateur_droit = "";
 var lg_petit_menu_left = "40px";
-var taille_ecran = $(window).width();
+var affichage_menu_gauche = "";
 
 function affiche_menu_enfant() {
-    if ( taille_ecran > 768 ) { //tablette et téléphone
+    if ($(window).width() > 768 ) { //tablette et téléphone
         $("#navbarleft_menus_peres button").hover(function(event){
             $("#navbarleft_menus_enfants").html( $(this).next().html() );
         });   
@@ -19,59 +19,71 @@ function affiche_menu_enfant() {
 }
 function afficher_menu_gauche_mobile() {
     //fonction qui affiche le menu gauche sur les mobiles
+    $("main").css("left", "0px");
+
     $("#navbarleft").css("z-index", "1");
     $("#navbarleft").css("left", "0px");
     $("#menu_icon_left").css("display", "none");
 
-     
+    affichage_menu_gauche = "afficher";
 }
 
 function cacher_menu_gauche_mobile() {
     //fonction qui cache le menu gauche sur les mobiles
+    $("main").css("left", "0px");
 
+    $("#navbarleft").css("z-index", "1");
     if (taille_menu_gauche == 'petit') {
-        $("#navbarleft").css("left", "0px");
-        alert("dodod");
+        $("#navbarleft").css("left", "-" + lg_petit_menu_left);
     } else {
         $("#navbarleft").css("left", "-200px");
     }
+
+    affichage_menu_gauche = "cacher";
 }
 
 function afficher_menu_gauche_ordi() {
     //fonction qui affiche le menu gauche sur ordi
+    $("#menu_icon_left").css("display", "block");
+
     $("#navbarleft").css("z-index", "auto");
+    $("#navbarleft").css("left", "0px");
 
     if (taille_menu_gauche == 'petit') {
         $("main").css("left", lg_petit_menu_left);
     } else {
         $("main").css("left", "200px");
     }
+
+    affichage_menu_gauche = "afficher";
 }
 
 function cacher_menu_gauche_ordi() {
     //fonction qui cache le menu gauche sur ordi
     $("#navbarleft").css("z-index", "auto");
-
     if (taille_menu_gauche == 'petit') {
         $("#navbarleft").css("left", "-" + lg_petit_menu_left);
     } else {
-        $("#navbarleft").css("background-color", "rgb(211,17,69)");
-
         $("#navbarleft").css("left", "-200px");
     }
+
+    $("main").css("left", "0px");
+
+    affichage_menu_gauche = "cacher";
 }
 
 
 function animation_menus_principaux() {
 	$("#bouton_menu_gauche").click(function(event){
-        if ( taille_ecran > 768 ) {//ecran est grand
-            if ($("#navbarleft").css("left") == '0px' || $("#navbarleft").css("z-index") == "1") {//si le menu gauche est affiché
+        if ($(window).width() > 768 ) {//ecran est grand
+            //if ($("#navbarleft").css("left") == '0px') {//si le menu gauche est affiché
+            if (affichage_menu_gauche == "afficher") {//si le menu gauche est affiché
                 action_utilisateur_gauche = "l'utilisateur a masque le menu";
             } else {
                 action_utilisateur_gauche = "";
             }
         } else {//ecran est petit
-            if ($("#navbarleft").css("left") == '0px' || $("#navbarleft").css("z-index") == "1") {//si le menu gauche est affiché
+            if (affichage_menu_gauche == "afficher") {//si le menu gauche est affiché
                 action_utilisateur_gauche = "";
             } else {
                 action_utilisateur_gauche = "l'utilisateur a affiche le menu";     
@@ -80,22 +92,16 @@ function animation_menus_principaux() {
         $("#action_gauche").val(action_utilisateur_gauche);
 
 
-        if (taille_ecran > 768) {
+        if ($(window).width() > 768) {
             $("main, #navbarleft").css("transition", "left .4s");    
-            if ($("#navbarleft").css("left") == '0px' || $("#navbarleft").css("z-index") == "1") { //si le menu gauche est affiché
-              $("main").css("left", "0px");
+            if (affichage_menu_gauche == "afficher") { //si le menu gauche est affiché
               cacher_menu_gauche_ordi();
-
             } else {
-              $("#navbarleft").css("left", "0px");
               afficher_menu_gauche_ordi();
-
             }
         } else {
-            
             $("main, #navbarleft").css("transition", "left .4s");
-            if ($("#navbarleft").css("left") == '0px' || $("#navbarleft").css("z-index") == "1") {
-                $("main").css("left", "0px");
+            if ($("#navbarleft").css("left") == '0px') {
                 cacher_menu_gauche_mobile();
             } else {
                 afficher_menu_gauche_mobile();
@@ -105,7 +111,7 @@ function animation_menus_principaux() {
 
     
 	$("#bouton_menu_droit").click(function(event){
-        if ( taille_ecran > 768 ) {
+        if ($(window).width() > 768 ) {
             if( $("#navbarright").css("right") == '0px' ) {
                 action_utilisateur_droit = "l'utilisateur a masque le menu";
             } else {
@@ -165,18 +171,14 @@ function animation_menus_principaux() {
 function etat_menu() {
     $("#navbarleft_menus_peres div[aria-labelledby='dropdownMenuButton']").addClass("menu_cache");
     $("#navbarleft_menus_enfants").html( $("#navbarleft_menus_peres button").first().next().html() );
-    if (taille_ecran <= 768) {
-        /*$("#navbarleft").css("left", "-200px");
-        $("main").css("left", "0px").css("right","0px");*/
+    if ($(window).width() <= 768) {
         $("#navbarright").css("right", "-200px");
         $("main").css("right", "0px");
-        cacher_menu_gauche_mobile;
+        cacher_menu_gauche_mobile();
     } else {
-        /*$("#navbarleft").css("left", "0px");
-        $("main").css("left", "200px").css("right", "200px");*/ 
         $("#navbarright").css("right", "0px");
         $("main").css("right", "200px");
-        afficher_menu_gauche_ordi;
+        afficher_menu_gauche_ordi();
     }
 }
 
@@ -188,21 +190,11 @@ function taille_fenetre() {
         $("#test_taille").val( $(window).width() );
 
 
-        if ( taille_ecran <= 768) {
+        if ($(window).width() <= 768) {
             if(action_utilisateur_gauche == "l'utilisateur a affiche le menu" ){
-                /*$("#navbarleft").css("left", "0px");
-                if (taille_menu_gauche == 'petit') {
-                    $("main").css("left", lg_petit_menu_left);
-                } else {
-                    $("main").css("left", "200px");
-                }*/
-                alert("affiche");
                 afficher_menu_gauche_mobile();
             } else {
-                /*$("#navbarleft").css("left", "-200px");
-                $("main").css("left", "0px");*/
-                alert("cache");
-               cacher_menu_gauche_ordi();
+               cacher_menu_gauche_mobile();
             }
             if(action_utilisateur_droit == "l'utilisateur a affiche le menu"){
                 $("#navbarright").css("right", "0px");
@@ -213,14 +205,8 @@ function taille_fenetre() {
             }
             
         }else{
-            if(action_utilisateur_gauche != "l'utilisateur a masque le menu") {
-                $("#navbarleft").css("left", "0px");
-                if (taille_menu_gauche == 'petit') {
-                    $("main").css("left", lg_petit_menu_left);
-                   
-                } else {
-                    $("main").css("left", "200px");
-                }
+            if(action_utilisateur_gauche != "l'utilisateur a masque le menu") { //donc j'affiche le menu gauche
+                afficher_menu_gauche_ordi();
             }
             
             if (action_utilisateur_droit != "l'utilisateur a masque le menu") {
