@@ -23,7 +23,7 @@ function afficher_menu_gauche_mobile() {
 
     $("#navbarleft").css("z-index", "1");
     $("#navbarleft").css("left", "0px");
-    $("#menu_icon_left").css("display", "none");
+    $("#menu_icon_left").css("display", "none"); //supprime la possibilité de réduire le menu gauche sur mobile
 
     affichage_menu_gauche = "afficher";
 }
@@ -33,11 +33,7 @@ function cacher_menu_gauche_mobile() {
     $("main").css("left", "0px");
 
     $("#navbarleft").css("z-index", "1");
-    if (taille_menu_gauche == 'petit') {
-        $("#navbarleft").css("left", "-" + lg_petit_menu_left);
-    } else {
-        $("#navbarleft").css("left", "-200px");
-    }
+    $("#navbarleft").css("left", (taille_menu_gauche == 'petit') ? "-" + lg_petit_menu_left : "-200px"); // condition ? alors : sinon
 
     affichage_menu_gauche = "cacher";
 }
@@ -205,9 +201,7 @@ function taille_fenetre() {
             }
             
         }else{
-            if(action_utilisateur_gauche != "l'utilisateur a masque le menu") { //donc j'affiche le menu gauche
-                afficher_menu_gauche_ordi();
-            }
+            if (action_utilisateur_gauche != "l'utilisateur a masque le menu") { afficher_menu_gauche_ordi(); } //donc j'affiche le menu gauche
             
             if (action_utilisateur_droit != "l'utilisateur a masque le menu") {
                 $("#navbarright").css("right", "0px");
