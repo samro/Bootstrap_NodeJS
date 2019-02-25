@@ -1,0 +1,241 @@
+/* couleur de base 
+  rgb(74,64,61)
+  rgb(211,17,69)
+*/
+
+body{
+  background-color:rgb(211,17,69);
+ 
+}
+main {
+  height:auto;
+  padding: 10px;
+  position: absolute;
+  /*left: 200px;*/
+  right: 200px;
+  background-color: white;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  margin-right: 4px;
+  margin-left: 4px;
+  box-shadow: 0px 0px 6px #000 inset;
+}
+
+/* toute nav */
+
+nav button, nav .btn, nav .nav-link {
+  color: white;
+  background-color: transparent;
+  border: none;
+}
+nav button:hover, nav button:active, nav button:focus, nav .btn:hover, nav .btn:active, nav .btn:focus, nav .nav-link:hover, nav .nav-link:active, nav .nav-link:focus {
+  cursor: pointer;
+  outline: 0; /* valable uniquement pour focus */
+  border-radius: 4px;
+  background-color: white;
+  color: rgb(211,17,69);
+  box-shadow: none;
+}
+
+/* navbartop */
+
+#navbartop .btn, #navbartop .btn_menu_lateraux, #navbartop .nav-link, #navbartop #barre_recherche {
+  margin: 0px 1px;
+  padding: 4px 8px;
+
+}
+
+#barre_recherche .btn {
+  margin: 0;
+  margin-right: 4px;
+  border-radius: 0px 4px 4px 0px;
+  border: 1px solid white;
+}
+nav .form-control {
+  border: none;
+}
+
+/* navbarleft */
+#navbarleft {
+    width: 200px;
+    height: 100%;
+    position: absolute;
+    left: 0px;
+    background-color: rgb(211,17,69);
+}
+#container_menus {
+  display: flex;
+}
+#navbarleft_menus_peres {
+  width: 40px;
+}
+
+#navbarleft button {
+  font-size: 20px;
+  width: 100%;
+  padding: 0.375rem 0.75rem;
+  border-radius: 0px ;
+  border-top: 1px solid rgb(211,17,69);
+  border-bottom: 1px solid rgb(211,17,69);
+}
+
+.navbarleft_menus_peres + div { /* premier élément div enfant de .navbarleft_menus_peres*/
+  padding: 0.5rem 0;
+  margin: 0.125rem 0;
+}
+
+#navbarleft_menus_enfants {
+  flex:1;
+  border-radius: 0px 4px 4px 0px;
+  border-top: 1px solid rgb(211,17,69);
+  border-bottom: 1px solid rgb(211,17,69);
+}
+#navbarleft_menus_enfants, #navbarleft .dropdown-menu {
+  background-color: white;
+}
+#navbarleft_menus_enfants a {
+  display: block;
+}
+#navbarleft_menus_enfants a:first-child{
+  border-top-right-radius: 4px;
+}
+
+.menu_cache {
+  display: none;
+}
+
+#menu_icon_left {
+  width: 100%;
+  background-color: transparent;
+  padding: 0;
+  margin: 0;
+}
+#menu_icon_left:hover, #menu_icon_left:active, #menu_icon_left:focus {
+  border-radius: 0px;
+}
+#menu_icon_left i{
+  float:right;
+  color: white;
+  font-size: 16px;
+}
+/************************/
+
+
+/* navbarright */
+#navbarright {
+  width:200px;
+  position:absolute;
+  right:0px;
+}
+
+#navbarright .nav-link, #navbarright .nav-link:active {
+  background-color: white;
+  color: #555;
+}
+#comm,#config{
+  display:none;
+}
+
+ .tab-content p{
+  background: white;
+  border-bottom-left-radius: 7px;
+  border-bottom-right-radius: 7px;
+  padding-left: 10px;
+  margin-right: 5px;
+
+}
+
+#myTab .nav-link{
+  color: #000;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+  border-top-left-radius: 7px;
+  border-top-right-radius: 7px;
+}
+
+
+
+
+
+
+
+
+
+@media screen and (min-width: 481px) {
+
+
+}
+
+
+ 
+@media screen and (min-width: 768px) {
+
+}
+
+/* BOOSTRAP */
+
+.navbar-brand {
+  left: 50%;
+  position: absolute;
+  transform: translateX(-50%);
+}
+
+
+nav .dropdown:hover>.dropdown-menu {
+  display: block;
+}
+
+#barre_recherche .form-control {
+  padding: 0rem 0.75rem;
+
+}
+
+#navbartop .form-control {
+  border: 1px solid rgb(211,17,69);
+}
+#navbartop .form-control:focus {
+  box-shadow: 0px 0px 6px rgb(0,0,0) inset;
+  border-right: none;
+}
+
+#navbartop .dropdown-menu, #navbarleft .dropdown-menu {
+  /* background-color: rgb(211,17,69); */
+  border: 1px solid rgb(211,17,69);
+}
+
+#navbarleft .dropdown-menu {
+  border-left: none;
+}
+
+nav .dropdown-menu {
+  /* background-color: définit plus haut avec #navbarleft */
+  box-shadow: 0px 0px 10px #555;
+  
+}
+#navbarleft .dropdown-menu {
+  border-radius: 0px 6px 6px 0px;
+  box-shadow: 4px 0px 6px #555;
+  margin-left: -1px;
+}
+
+nav .dropdown-item {
+  padding-left: 10px;
+}
+#navbarleft .dropdown-item {
+  padding-left: 10px;
+  white-space: normal;
+}
+nav .dropdown-item:hover{
+  color:rgb(211,17,69);
+  background-color:transparent;
+}
+
+
+
+
+
+
+
+
+
+
