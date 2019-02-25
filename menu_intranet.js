@@ -19,6 +19,7 @@ function affiche_menu_enfant() {
 }
 function afficher_menu_gauche_mobile() {
     //fonction qui affiche le menu gauche sur les mobiles
+    if (taille_menu_gauche == "petit") { menu_icon(); }
     $("main").css("left", "0px");
 
     $("#navbarleft").css("z-index", "1");
@@ -30,6 +31,8 @@ function afficher_menu_gauche_mobile() {
 
 function cacher_menu_gauche_mobile() {
     //fonction qui cache le menu gauche sur les mobiles
+    if (taille_menu_gauche == "petit") { menu_icon(); }
+
     $("main").css("left", "0px");
 
     $("#navbarleft").css("z-index", "1");
@@ -45,11 +48,13 @@ function afficher_menu_gauche_ordi() {
     $("#navbarleft").css("z-index", "auto");
     $("#navbarleft").css("left", "0px");
 
-    if (taille_menu_gauche == 'petit') {
+    //condition ternaire
+    $("main").css("left", (taille_menu_gauche == 'petit') ? lg_petit_menu_left : "200px");
+   /* if (taille_menu_gauche == 'petit') {
         $("main").css("left", lg_petit_menu_left);
     } else {
         $("main").css("left", "200px");
-    }
+    }*/
 
     affichage_menu_gauche = "afficher";
 }
@@ -57,51 +62,58 @@ function afficher_menu_gauche_ordi() {
 function cacher_menu_gauche_ordi() {
     //fonction qui cache le menu gauche sur ordi
     $("#navbarleft").css("z-index", "auto");
-    if (taille_menu_gauche == 'petit') {
-        $("#navbarleft").css("left", "-" + lg_petit_menu_left);
-    } else {
-        $("#navbarleft").css("left", "-200px");
-    }
 
+    //condition ternaire
+    $("#navbarleft").css("left", (taille_menu_gauche == 'petit') ? "-" + lg_petit_menu_left : "-200px"); 
+    
     $("main").css("left", "0px");
 
     affichage_menu_gauche = "cacher";
 }
+function menu_icon() {
+    var menu = $("#navbarleft div");
 
+    $("#menu_icon_left i").toggleClass("fa-angle-left").toggleClass("fa-angle-right");
+    $("#navbarleft").css("transition", "width .4s");
+    $("main").css("transition", "left .4s");
+    if (countmenuicon % 2 == 0) {
+        $("#navbarleft").css("width", lg_petit_menu_left);
+        $("main").css("left", lg_petit_menu_left);
+        $("#navbarleft_menus_peres div[aria-labelledby='dropdownMenuButton']").removeClass("menu_cache");
+        $("#navbarleft_menus_enfants").css("display", "none");
+        taille_menu_gauche = "petit";
+    } else {
+        $("#navbarleft").css("width", "200px");
+        $("main").css("left", "200px");
+        $("#navbarleft_menus_enfants").css("display", "block");
+        $("#navbarleft_menus_peres div[aria-labelledby='dropdownMenuButton']").addClass("menu_cache");
+        taille_menu_gauche = "grand";
+        affiche_menu_enfant();
+    }
+    countmenuicon++;
+
+    menu.toggleClass("dropdown").toggleClass("dropright");
+    menu.children("button").toggleClass("btn").toggleClass("btn-default").toggleClass("dropdown");
+    $("#navbarleft div[aria-labelledby='dropdownMenuButton']").toggleClass("dropdown-menu");
+    
+}
 
 function animation_menus_principaux() {
 	$("#bouton_menu_gauche").click(function(event){
-        if ($(window).width() > 768 ) {//ecran est grand
-            //if ($("#navbarleft").css("left") == '0px') {//si le menu gauche est affiché
-            if (affichage_menu_gauche == "afficher") {//si le menu gauche est affiché
-                action_utilisateur_gauche = "l'utilisateur a masque le menu";
-            } else {
-                action_utilisateur_gauche = "";
-            }
-        } else {//ecran est petit
-            if (affichage_menu_gauche == "afficher") {//si le menu gauche est affiché
-                action_utilisateur_gauche = "";
-            } else {
-                action_utilisateur_gauche = "l'utilisateur a affiche le menu";     
-            }
+        if ($(window).width() > 768) {//ecran est grand, on mémorise l'action de l'utilisateur
+            action_utilisateur_gauche = (affichage_menu_gauche == "afficher") ? "l'utilisateur a masque le menu" : ""; //si le menu gauche est affiché et qu'il clique, c'est donc qu'il veut le masquer
+        } else {//ecran est petit, on mémorise l'action de l'utilisateur
+            action_utilisateur_gauche = (action_utilisateur_gauche == "afficher") ? "" : "l'utilisateur a affiche le menu"; //si le menu gauche est affiché
         }
         $("#action_gauche").val(action_utilisateur_gauche);
 
 
-        if ($(window).width() > 768) {
-            $("main, #navbarleft").css("transition", "left .4s");    
-            if (affichage_menu_gauche == "afficher") { //si le menu gauche est affiché
-              cacher_menu_gauche_ordi();
-            } else {
-              afficher_menu_gauche_ordi();
-            }
-        } else {
+        if ($(window).width() > 768) {//ecran ordinateur
+            $("main, #navbarleft").css("transition", "left .4s");   
+            affichage_menu_gauche == "afficher" ? cacher_menu_gauche_ordi() : afficher_menu_gauche_ordi(); //si le menu gauche est affiché        
+        } else {//ecran mobile
             $("main, #navbarleft").css("transition", "left .4s");
-            if ($("#navbarleft").css("left") == '0px') {
-                cacher_menu_gauche_mobile();
-            } else {
-                afficher_menu_gauche_mobile();
-            }
+            affichage_menu_gauche == "afficher" ? cacher_menu_gauche_mobile() : afficher_menu_gauche_mobile(); //si le menu gauche est affiché
         }
     });
 
@@ -132,30 +144,7 @@ function animation_menus_principaux() {
     });
 
 	$("#menu_icon_left").click(function(event){
-        var menu = $("#navbarleft div");
-
-        $("#menu_icon_left i").toggleClass("fa-angle-left").toggleClass("fa-angle-right");
-        $("#navbarleft").css("transition", "width .4s");
-        $("main").css("transition", "left .4s");
-        if (countmenuicon % 2 == 0) {
-            $("#navbarleft").css("width", lg_petit_menu_left);
-            $("main").css("left", lg_petit_menu_left);
-            $("#navbarleft_menus_peres div[aria-labelledby='dropdownMenuButton']").removeClass("menu_cache");
-            $("#navbarleft_menus_enfants").css("display", "none");
-            taille_menu_gauche = "petit";
-        } else {
-            $("#navbarleft").css("width", "200px");
-            $("main").css("left", "200px");
-            $("#navbarleft_menus_enfants").css("display", "block");
-            $("#navbarleft_menus_peres div[aria-labelledby='dropdownMenuButton']").addClass("menu_cache");
-            taille_menu_gauche = "grand";
-            affiche_menu_enfant();
-        }
-        countmenuicon++;
-
-        menu.toggleClass("dropdown").toggleClass("dropright");
-        menu.children("button").toggleClass("btn").toggleClass("btn-default").toggleClass("dropdown");
-        $("#navbarleft div[aria-labelledby='dropdownMenuButton']").toggleClass("dropdown-menu");
+        menu_icon();
     });
 
  
@@ -186,26 +175,27 @@ function taille_fenetre() {
         $("#test_taille").val( $(window).width() );
 
 
-        if ($(window).width() <= 768) {
-            if(action_utilisateur_gauche == "l'utilisateur a affiche le menu" ){
-                afficher_menu_gauche_mobile();
-            } else {
-               cacher_menu_gauche_mobile();
-            }
+        if ($(window).width() <= 768) {//ecan pour mobile
+            //utilisateur a affiché le menu gauche
+          action_utilisateur_gauche == "l'utilisateur a affiche le menu" ? afficher_menu_gauche_mobile() : cacher_menu_gauche_mobile(); 
+           
             if(action_utilisateur_droit == "l'utilisateur a affiche le menu"){
                 $("#navbarright").css("right", "0px");
-                $("main").css("right","200px");
+                $("main").css("right", "200px");
+                
             } else {
                 $("#navbarright").css("right", "-200px");
-                $("main").css("right","0px");
+                $("main").css("right", "0px");
+              
             }
             
-        }else{
+        }else{// ecran pour ordinateur
             if (action_utilisateur_gauche != "l'utilisateur a masque le menu") { afficher_menu_gauche_ordi(); } //donc j'affiche le menu gauche
             
             if (action_utilisateur_droit != "l'utilisateur a masque le menu") {
                 $("#navbarright").css("right", "0px");
-                $("main").css("right","200px");
+                $("main").css("right", "200px");
+               
             }
         }
     });
