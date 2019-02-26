@@ -22,7 +22,6 @@ function afficher_menu_gauche_mobile() {
     //fonction qui affiche le menu gauche sur les mobiles
     if (taille_menu_gauche == "petit") { menu_icon(); }
     $("main").css("left", "0px");
-
     $("#navbarleft").css("left", "0px");
     $("#menu_icon_left").css("display", "none"); //supprime la possibilité de réduire le menu gauche sur mobile
 
@@ -32,9 +31,7 @@ function afficher_menu_gauche_mobile() {
 function cacher_menu_gauche_mobile() {
     //fonction qui cache le menu gauche sur les mobiles
     if (taille_menu_gauche == "petit") { menu_icon(); }
-
     $("main").css("left", "0px");
-
     $("#navbarleft").css("left", (taille_menu_gauche == 'petit') ? "-" + lg_petit_menu_left : "-200px"); // condition ? alors : sinon
 
     affichage_menu_gauche = "cacher";
@@ -43,7 +40,6 @@ function cacher_menu_gauche_mobile() {
 function afficher_menu_gauche_ordi() {
     //fonction qui affiche le menu gauche sur ordi
     $("#menu_icon_left").css("display", "block");
-
     $("#navbarleft").css("left", "0px");
 
     //condition ternaire
@@ -62,7 +58,6 @@ function cacher_menu_gauche_ordi() {
 
     //condition ternaire
     $("#navbarleft").css("left", (taille_menu_gauche == 'petit') ? "-" + lg_petit_menu_left : "-200px"); 
-    
     $("main").css("left", "0px");
 
     affichage_menu_gauche = "cacher";
@@ -92,19 +87,16 @@ function menu_icon() {
     menu.toggleClass("dropdown").toggleClass("dropright");
     menu.children("button").toggleClass("btn").toggleClass("btn-default").toggleClass("dropdown");
     $("#navbarleft div[aria-labelledby='dropdownMenuButton']").toggleClass("dropdown-menu");
-    
 }
 
 function afficher_menu_droit_mobile() {
     $("main").css("right", "0px");
-
     $("#navbarright").css("right", "0px");
 
     affichage_menu_droit = "afficher";
 }
 function cacher_menu_droit_mobile() {
     $("main").css("right", "0px");
-
     $("#navbarright").css("right", "-200px");
 
     affichage_menu_droit = "cacher";
@@ -114,7 +106,6 @@ function afficher_menu_droit_ordi() {
     $("main").css("right", "200px");
 
     affichage_menu_droit = "afficher";
-
 }
 function cacher_menu_droit_ordi() {
     $("#navbarright").css("right", "-200px");
@@ -148,13 +139,13 @@ function animation_menus_principaux() {
     
 	$("#bouton_menu_droit").click(function(event){
         if ($(window).width() > 768) {//ecran est grand, on mémorise l'action de l'utilisateur
-            if( $("#navbarright").css("right") == '0px' ) {
+            if (affichage_menu_droit == "afficher") {
                 action_utilisateur_droit = "l'utilisateur a masque le menu";
             } else {
                 action_utilisateur_droit = "";
             }
         } else {//ecran est petit, on mémorise l'action de l'utilisateur
-            if ( $("#navbarright").css("right") == '0px' ) {
+            if (affichage_menu_droit == "afficher" ) {
                 action_utilisateur_droit = "";
             } else {
                 action_utilisateur_droit = "l'utilisateur a affiche le menu";     
@@ -163,25 +154,23 @@ function animation_menus_principaux() {
 
         if ($(window).width() > 768) {//ecran pour ordinateur
             $("main, #navbarright").css("transition", "right .4s");
-            if ($("#navbarright").css("right") == '0px') { //cacher le menu (si le right de navbarright est a 0 alors le menu est affiché)
-                /*$("#navbarright").css("right", "-200px");
-                $("main").css("right", "0px");*/
+            if (affichage_menu_droit == "afficher") { //cacher le menu 
                 cacher_menu_droit_ordi();
             } else {//afficher le menu
-                /*$("#navbarright").css("right", "0px");
-                $("main").css("right", "200px");*/
                 afficher_menu_droit_ordi();
             }
         } else {//ecran mobile
             $("main, #navbarright").css("transition", "left .4s");
-            if ($("#navbarright").css("right") == '0px') {
-                afficher_menu_droit_mobile();
-            } else {
-                /*$("#navbarright").css("right", "0px");
-                $("main").css("right", "0px");*/
+            if (affichage_menu_droit == "afficher") {
                 cacher_menu_droit_mobile();
+            } else {
+                afficher_menu_droit_mobile();
             }
         }
+
+        $("#action_utilisateur_droit").val(action_utilisateur_droit);
+        $("#affichage_menu_droit").val(affichage_menu_droit);
+
     });
 
 	$("#menu_icon_left").click(function(event){
@@ -198,13 +187,11 @@ function etat_menu() {
     $("#navbarleft_menus_peres div[aria-labelledby='dropdownMenuButton']").addClass("menu_cache");
     $("#navbarleft_menus_enfants").html( $("#navbarleft_menus_peres button").first().next().html() );
     if ($(window).width() <= 768) {
-        $("#navbarright").css("right", "-200px");
-        $("main").css("right", "0px");
         cacher_menu_gauche_mobile();
+        cacher_menu_droit_mobile();
     } else {
-        $("#navbarright").css("right", "0px");
-        $("main").css("right", "200px");
         afficher_menu_gauche_ordi();
+        afficher_menu_droit_ordi();
     }
 }
 
@@ -214,31 +201,16 @@ function etat_menu() {
 function taille_fenetre() {
     $( window ).resize( function() {
         $("#test_taille").val( $(window).width() );
-
-
         if ($(window).width() <= 768) {//ecan pour mobile
             //utilisateur a affiché le menu gauche
-          action_utilisateur_gauche == "l'utilisateur a affiche le menu" ? afficher_menu_gauche_mobile() : cacher_menu_gauche_mobile(); 
-           
-            if(action_utilisateur_droit == "l'utilisateur a affiche le menu"){
-                $("#navbarright").css("right", "0px");
-                $("main").css("right", "200px");
-                
-            } else {
-                $("#navbarright").css("right", "-200px");
-                $("main").css("right", "0px");
-              
-            }
-            
+            action_utilisateur_gauche == "l'utilisateur a affiche le menu" ? afficher_menu_gauche_mobile() : cacher_menu_gauche_mobile(); 
+            action_utilisateur_droit == "l'utilisateur a affiche le menu" ? afficher_menu_droit_mobile() : cacher_menu_droit_mobile(); 
         }else{// ecran pour ordinateur
             if (action_utilisateur_gauche != "l'utilisateur a masque le menu") { afficher_menu_gauche_ordi(); } //donc j'affiche le menu gauche
-            
-            if (action_utilisateur_droit != "l'utilisateur a masque le menu") {
-                $("#navbarright").css("right", "0px");
-                $("main").css("right", "200px");
-               
-            }
+            if (action_utilisateur_droit != "l'utilisateur a masque le menu") { afficher_menu_droit_ordi(); }
         }
+        $("#action_utilisateur_droit").val(action_utilisateur_droit);
+        $("#affichage_menu_droit").val(affichage_menu_droit);
     });
 }
 
