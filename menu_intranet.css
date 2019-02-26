@@ -124,10 +124,11 @@ nav .form-control {
 
 /* navbarright */
 #navbarright {
-  width:200px;
-  position:absolute;
-  right:0px;
-  z-index: 1;
+    width: 200px;
+    position: absolute;
+    right: 0px;
+    z-index: 1;
+    background-color: rgb(211,17,69);
 }
 
 #navbarright .nav-link, #navbarright .nav-link:active {

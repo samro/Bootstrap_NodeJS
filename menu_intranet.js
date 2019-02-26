@@ -5,6 +5,7 @@ var taille_menu_droit = "";
 var action_utilisateur_droit = "";
 var lg_petit_menu_left = "40px";
 var affichage_menu_gauche = "";
+var affichage_menu_droit = "";
 
 function affiche_menu_enfant() {
     if ($(window).width() > 768 ) { //tablette et téléphone
@@ -97,14 +98,14 @@ function menu_icon() {
 function afficher_menu_droit_mobile() {
     $("main").css("right", "0px");
 
-    $("#navbarleft").css("right", "0px");
+    $("#navbarright").css("right", "0px");
 
     affichage_menu_droit = "afficher";
 }
 function cacher_menu_droit_mobile() {
     $("main").css("right", "0px");
 
-    $("#navbarleft").css("right", "-200px"); 
+    $("#navbarright").css("right", "-200px");
 
     affichage_menu_droit = "cacher";
 }
@@ -176,8 +177,9 @@ function animation_menus_principaux() {
             if ($("#navbarright").css("right") == '0px') {
                 afficher_menu_droit_mobile();
             } else {
-                  $("#navbarright").css("right", "-200px");
-                $("main").css("right", "0px");
+                /*$("#navbarright").css("right", "0px");
+                $("main").css("right", "0px");*/
+                cacher_menu_droit_mobile();
             }
         }
     });
