@@ -24,11 +24,11 @@ function afficher_menu_gauche_mobile() {
         cacher_menu_droit_mobile();
     }
     $("#navbarleft").addClass("mobile");
+    $("#navbarleft_menus_peres").addClass("mobile");
     if (taille_menu_gauche == "petit") { menu_icon(); }
     $("main").css("left", "0px");
     $("#navbarleft").css("left", "0px");
     $("#menu_icon_left").css("display", "none"); //supprime la possibilité de réduire le menu gauche sur mobile
-    $("#navbarleft").css("width", "100%");
 
     affichage_menu_gauche = "afficher";
 }
@@ -43,6 +43,7 @@ function cacher_menu_gauche_mobile() { //fonction qui cache le menu gauche sur l
 
 function afficher_menu_gauche_ordi() { //fonction qui affiche le menu gauche sur ordi
     $("#navbarleft").removeClass("mobile");
+    $("#navbarleft_menus_peres").removeClass("mobile");
 
     $("#menu_icon_left").css("display", "block");
     $("#navbarleft").css("left", "0px");
