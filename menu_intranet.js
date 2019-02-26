@@ -20,16 +20,20 @@ function affiche_menu_enfant() {
 }
 function afficher_menu_gauche_mobile() {
     //fonction qui affiche le menu gauche sur les mobiles
+    if (affichage_menu_droit == "afficher") {
+        cacher_menu_droit_mobile();
+    }
+    $("#navbarleft").addClass("mobile");
     if (taille_menu_gauche == "petit") { menu_icon(); }
     $("main").css("left", "0px");
     $("#navbarleft").css("left", "0px");
     $("#menu_icon_left").css("display", "none"); //supprime la possibilité de réduire le menu gauche sur mobile
+    $("#navbarleft").css("width", "100%");
 
     affichage_menu_gauche = "afficher";
 }
 
-function cacher_menu_gauche_mobile() {
-    //fonction qui cache le menu gauche sur les mobiles
+function cacher_menu_gauche_mobile() { //fonction qui cache le menu gauche sur les mobiles
     if (taille_menu_gauche == "petit") { menu_icon(); }
     $("main").css("left", "0px");
     $("#navbarleft").css("left", (taille_menu_gauche == 'petit') ? "-" + lg_petit_menu_left : "-200px"); // condition ? alors : sinon
@@ -37,8 +41,9 @@ function cacher_menu_gauche_mobile() {
     affichage_menu_gauche = "cacher";
 }
 
-function afficher_menu_gauche_ordi() {
-    //fonction qui affiche le menu gauche sur ordi
+function afficher_menu_gauche_ordi() { //fonction qui affiche le menu gauche sur ordi
+    $("#navbarleft").removeClass("mobile");
+
     $("#menu_icon_left").css("display", "block");
     $("#navbarleft").css("left", "0px");
 
@@ -49,7 +54,7 @@ function afficher_menu_gauche_ordi() {
     } else {
         $("main").css("left", "200px");
     }*/
-
+    
     affichage_menu_gauche = "afficher";
 }
 
@@ -94,6 +99,10 @@ function afficher_menu_droit_mobile() {
     $("#navbarright").css("right", "0px");
 
     affichage_menu_droit = "afficher";
+
+    if (affichage_menu_gauche == "afficher") {
+        cacher_menu_gauche_mobile();
+    }
 }
 function cacher_menu_droit_mobile() {
     $("main").css("right", "0px");
@@ -161,6 +170,7 @@ function animation_menus_principaux() {
             }
         } else {//ecran mobile
             $("main, #navbarright").css("transition", "left .4s");
+
             if (affichage_menu_droit == "afficher") {
                 cacher_menu_droit_mobile();
             } else {

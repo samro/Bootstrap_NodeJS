@@ -64,6 +64,11 @@ nav .form-control {
     background-color: rgb(211,17,69);
     z-index: 1;
 }
+#navbarleft.mobile {
+    background-color: blue;
+    font-size:x-large;
+
+}
 #container_menus {
   display: flex;
 }
