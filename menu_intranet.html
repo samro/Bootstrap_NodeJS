@@ -1,0 +1,224 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Bootstrap4</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="menu_intranet.css">
+    <link rel="stylesheet" href="fontawesome/css/all.min.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <!--<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+    <script src="menu_intranet.js"></script>
+
+
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+</head>
+    
+<body>
+  
+
+<nav id="navbartop" class="navbar navbar-expand">
+	<button id="bouton_menu_gauche" class="btn_menu_lateraux"  type="button" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+	  <i class="fas fa-bars"></i>
+	</button>
+	<a class="navbar-brand" id="logo" href="#">
+		<img src="logo_ville.png" alt="Logo_ville" width="90" />
+	</a>
+	
+	
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" href="#" id="home">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">a</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">b</a>
+      </li>
+		</ul>
+		
+
+    <ul class="navbar-nav ml-auto"> 
+      <li class="nav-item">
+	   		<form class="" action="#">
+			<div class="input-group input-group-sm" id="barre_recherche">
+			  <input type="text" class="form-control" aria-label="Text input with dropdown button">
+			  <div class="input-group-prepend">
+			    <button class="btn btn-sm btn-outline dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						<i class="fas fa-search"></i>
+					</button>
+			    <div class="dropdown-menu dropdown-menu-right">
+			      <a class="dropdown-item" href="#">Dans l'annuaire</a>
+			      <a class="dropdown-item" href="#">Dans le matériel</a>
+                    
+			    </div>
+			  </div>
+			</div>   
+		</form> 
+      </li>
+		</ul>
+
+
+		<div class="btn-group">
+			<button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				<i class="fas fa-user"></i>
+			</button>
+			<div class="dropdown-menu dropdown-menu-right">
+				<form class="px-4 py-3">
+					<div class="form-group">
+						<input type="email" class="form-control" id="exampleDropdownFormEmail1" placeholder="Adresse email">
+					</div>
+					<div class="form-group">
+						<input type="password" class="form-control" id="exampleDropdownFormPassword1" placeholder="Mot de passe">
+					</div>
+					<button type="submit" class="btn btn-primary">Se connecter</button>
+				</form>
+				<div class="dropdown-divider"></div>
+				<a class="dropdown-item" href="#">Mot de passe oublié ?</a>
+			</div>
+		</div>
+		
+		<button id="bouton_menu_droit" class="btn_menu_lateraux" type="button" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+	      <i class="fas fa-bars"></i>
+	    </button>
+</nav>	
+
+<div class="container-fluid">
+	<div class="row">
+		<nav class=" d-block p-0 m-0" id="navbarleft">
+			<div id="container_menus">
+				<div id="navbarleft_menus_peres">
+					<div class="">
+						<button class="" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Home">
+							<i class="fas fa-home" id="icon"></i>
+						</button>
+						<div class="" aria-labelledby="dropdownMenuButton">
+							<a class="dropdown-item" href="#">Action1</a>
+							<a class="dropdown-item" href="#">Another action1</a>
+							<a class="dropdown-item" href="#">Something else here1</a>
+						</div>
+
+					</div>
+					<div class="">
+						<button class="" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="A propos">
+								<i class="fa fa-envelope"></i>
+						</button>
+						<div class="" aria-labelledby="dropdownMenuButton">
+							<a class="dropdown-item" href="#">Action2</a>
+							<a class="dropdown-item" href="#">Another action2</a>
+							<a class="dropdown-item" href="#">Something else here2</a>
+						</div>
+					</div>
+				
+					<div class="">
+						<button class="" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Adress book">
+							<i class="fas fa-address-book"></i>
+						</button>
+						<div class="" aria-labelledby="dropdownMenuButton">
+							<a class="dropdown-item" href="#">Action3</a>
+							<a class="dropdown-item" href="#">Another action3</a>
+							<a class="dropdown-item" href="#">Something else here3</a>
+						</div>
+					</div>
+					<div class="">
+							<button class="" type="button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" title="User">
+							
+								<i class="fas fa-user"></i>
+							</button>
+						<div class="" aria-labelledby="dropdownMenuButton">
+							<a class="dropdown-item" href="#">Action4</a>
+							<a class="dropdown-item" href="#">Another action4</a>
+							<a class="dropdown-item" href="#">Something else here4</a>
+						</div>
+					</div> 
+				</div>
+				<div id="navbarleft_menus_enfants">
+					
+				</div>
+			</div>
+			<button id="menu_icon_left"><i class="fas fa-angle-left"></i></button>
+		</nav>
+		
+        <div id="test">
+
+            block de test
+        </div>
+    
+        <main class="">
+            <h1>Hello, world!</h1>
+            <p>&nbsp;</p>
+            <div>
+                taille écran<input type="text" id="test_taille">
+                action_utilisateur_gauche<input type="text" id="action_gauche" />
+            </div>                                
+            <div>
+                action_utilisateur_droit<input type="text" id="action_utilisateur_droit">
+                affichage_menu_droit<input type="text" id="affichage_menu_droit" />
+            </div>
+            <p>&nbsp;</p>
+
+            <div id="menu_bootstrap" style="background-color: purple;">
+                <ul >
+                    <li href="#">bobo jh i i i_ i iujh ihb i ihb ihb ihb ijhb ijhb ih ig iyg iuyg ig ig iyg iygigy iuyg iyg iyg</li>
+                    <li href="#">baba</li>
+                    <li href="#">bibi</li>
+                </ul>
+            </div>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin viverra, lorem in convallis bibendum, tellus lectus molestie neque, et varius purus nisi non lectus. Aenean sed scelerisque quam. Donec vulputate felis ut ultricies ultrices. Praesent consectetur nibh leo, et vulputate erat lacinia et. Fusce a sem urna. Sed luctus facilisis magna, eget bibendum tellus auctor et. Integer ante ligula, mattis tristique fermentum at, condimentum non nibh.</p>
+            <p>Sed turpis massa, blandit eu dictum vitae, ornare a nibh. Interdum et malesuada fames ac ante ipsum primis in faucibus. Phasellus quis magna sed tellus venenatis blandit a in arcu. Suspendisse et arcu vehicula purus porta commodo. Ut et elementum tellus. Cras mattis ex vel quam auctor, eget euismod sem elementum. Nullam a bibendum leo. Quisque vel purus lobortis arcu varius auctor.</p>
+            <p>Vivamus neque tortor, iaculis ultrices auctor et, volutpat nec odio. Proin id sollicitudin lorem. Vivamus id elit laoreet lacus vehicula facilisis vitae et lacus. Aenean et mauris eu tellus euismod gravida. Ut efficitur purus eu orci posuere luctus. Sed mollis dui nunc. Phasellus a pellentesque mauris, sed volutpat augue. Aliquam quis ante sed felis malesuada aliquam. Integer hendrerit urna metus, et consectetur ligula molestie id. Maecenas dictum aliquet magna, ut venenatis diam cursus et. Suspendisse porttitor vitae orci a vestibulum. Praesent a orci placerat, eleifend urna in, accumsan dolor. Fusce convallis elementum volutpat. Maecenas facilisis ac augue sit amet sagittis.</p>
+            <p>Phasellus id sapien quis nisl dignissim bibendum. Proin laoreet erat et neque volutpat tempor. Integer magna elit, ullamcorper nec maximus vehicula, lobortis vel odio. Pellentesque laoreet nulla nulla, vel iaculis est tincidunt tristique. Quisque ultrices, orci eu posuere dapibus, libero nisi suscipit est, sit amet pretium tellus justo eget nunc. Nullam vel nisl in ante ornare vestibulum in quis magna. Fusce dignissim congue aliquam. Maecenas rutrum aliquam lectus tempor commodo.</p>
+            <p>Duis et scelerisque felis. Proin pretium enim vel risus convallis suscipit. Phasellus viverra odio ac blandit egestas. Nullam iaculis massa mauris, faucibus sollicitudin nibh tempus eget. Duis sed quam ex. Praesent sed maximus metus. Pellentesque metus erat, scelerisque quis libero a, condimentum venenatis elit. Duis ut auctor diam, nec vehicula dolor. Vivamus ut tincidunt lorem, et cursus arcu. Fusce sagittis lorem quis scelerisque rhoncus. Fusce neque ante, posuere eu ipsum et, dignissim ultricies leo. Duis non est eu libero interdum ullamcorper. </p>
+            <p><a href="https://coreui.io">code source téléchargeable d'admin core-ui, pour comprendre le template déjà fait qu'on veut copier</a></p>
+
+            <p>
+                <div class="dropdown dropright">
+                    <button class="btn btn-default dropdown" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="A propos">
+                        <i class="fa fa-envelope"></i>
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="#">Actio2n</a>
+                        <a class="dropdown-item" href="#">Another action2</a>
+                        <a class="dropdown-item" href="#">Something else here2</a>
+                    </div>
+                </div>
+            </p>
+        </main>
+		
+		<nav class="navbar d-block p-0 m-0" id="navbarright">
+		    <div id="container_menu_right" >
+				<ul class="nav nav-tabs" id="myTab" role="tablist">
+					<li class="nav-item">
+						<a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true"><i class="fas fa-home"></i></a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link " id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false"><i class="fas fa-comment"></i></a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link " id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false"><i class="fas fa-cog"></i></a>
+					</li>
+				</ul>
+				<div class="tab-content" id="myTabContent">
+					<div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+					</div>
+					<div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+						<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+					</div>
+					<div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+						<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+					</div>
+				</div>
+			</div>
+        </nav>
+	</div>
+</div>
+</body>
+</html>
