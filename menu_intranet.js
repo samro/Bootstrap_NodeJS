@@ -20,20 +20,20 @@ function affiche_menu_enfant() {
 }
 function afficher_menu_gauche_mobile() {
     //fonction qui affiche le menu gauche sur les mobiles
-    /*if (affichage_menu_droit == "afficher") {
+    if (affichage_menu_droit == "afficher") {
         cacher_menu_droit_mobile();
     }
     $("#navbarleft").addClass("mobile");
     $("#navbarleft_menus_peres").addClass("mobile");
-    if (taille_menu_gauche == "petit") { menu_icon(); }
-    $("#menu_icon_left").css("display", "none"); //supprime la possibilité de réduire le menu gauche sur mobile*/
+    //if (taille_menu_gauche == "petit") { menu_icon(); }
+    //$("#menu_icon_left").css("display", "none"); //supprime la possibilité de réduire le menu gauche sur mobile*/
 
     $("main").css("left", "0px");
-    $("#navbarleft").css("left", "-200px");
+    //$("#navbarleft").css("left", "-200px");
 
-    /*$("#navbarleft").show('slide', { direction: "left" }, 1000);*/
+    $("#navbarleft").show('slide', { direction: "left" }, 1000);
 
-    $("#test").show('slide', { direction: "left" }, 1000);
+    //$("#test").show('slide', { direction: "left" }, 1000);
 
 
     affichage_menu_gauche = "afficher";
@@ -44,29 +44,32 @@ function cacher_menu_gauche_mobile() { //fonction qui cache le menu gauche sur l
     $("#menu_icon_left").css("display", "none"); //supprime la possibilité de réduire le menu gauche sur mobile*/
 
     $("main").css("left", "0px");
-    $("#navbarleft").css("left", (taille_menu_gauche == 'petit') ? "-" + lg_petit_menu_left : "-200px"); // condition ? alors : sinon
-    
+    //$("#navbarleft").css("left", (taille_menu_gauche == 'petit') ? "-" + lg_petit_menu_left : "-200px"); // condition ? alors : sinon
+    $("#navbarleft").hide('slide', { direction: "left" }, 1000);
 
-    /*$("#navbarleft").addClass("mobile");
+
+    $("#navbarleft").addClass("mobile");
     $("#navbarleft_menus_peres").addClass("mobile");
-   $("#navbarleft").hide('slide', { direction: "left" }, 1000);*/
 
-    $("#test").hide('slide', { direction: "left" }, 1000);
+
+    //$("#test").hide('slide', { direction: "left" }, 1000);
 
     affichage_menu_gauche = "cacher";
 }
 
 function afficher_menu_gauche_ordi() { //fonction qui affiche le menu gauche sur ordi
+    $("#navbarleft").css("width", "200px");
     $("#navbarleft").removeClass("mobile");
     $("#navbarleft_menus_peres").removeClass("mobile");
 
-    $("#menu_icon_left").css("display", "block");
-    $("#navbarleft").css("left", "0px");
+    //$("#menu_icon_left").css("display", "block");
+    $("#navbarleft").show('slide', { direction: "left" }, 1000);
+    
 
     //condition ternaire
     $("main").css("left", (taille_menu_gauche == 'petit') ? lg_petit_menu_left : "200px");    
     affichage_menu_gauche = "afficher";
-    $("#test").show('slide', { direction: "left" }, 1000);
+    //$("#test").show('slide', { direction: "left" }, 1000);
 
 }
 
@@ -74,11 +77,13 @@ function cacher_menu_gauche_ordi() {
     //fonction qui cache le menu gauche sur ordi
 
     //condition ternaire
-    $("#navbarleft").css("left", (taille_menu_gauche == 'petit') ? "-" + lg_petit_menu_left : "-200px"); 
+    //$("#navbarleft").css("left", (taille_menu_gauche == 'petit') ? "-" + lg_petit_menu_left : "-200px"); 
+    $("#navbarleft").hide('slide', { direction: "left" }, 1000);
+    $("main").css("transition", "left 1.7s");
     $("main").css("left", "0px");
 
     affichage_menu_gauche = "cacher";
-    $("#test").hide('slide', { direction: "left" }, 1000);
+    //$("#test").hide('slide', { direction: "left" }, 1000);
 
 }
 function menu_icon() {
@@ -110,7 +115,10 @@ function menu_icon() {
 
 function afficher_menu_droit_mobile() {
     $("main").css("right", "0px");
-    $("#navbarright").css("right", "0px");
+    //$("#navbarright").css("right", "0px");
+    $("#navbarright").css("width", "100%");
+    $("#navbarright").show('slide', { direction: "right" }, 1000);
+    $("#navbarright").addClass("mobile");
 
     affichage_menu_droit = "afficher";
 
@@ -120,19 +128,27 @@ function afficher_menu_droit_mobile() {
 }
 function cacher_menu_droit_mobile() {
     $("main").css("right", "0px");
-    $("#navbarright").css("right", "-200px");
+    //$("#navbarright").css("right", "-200px");
+    $("#navbarright").hide('slide', { direction: "right" }, 1000);
+    $("#navbarright").addClass("mobile");
 
     affichage_menu_droit = "cacher";
 }
 function afficher_menu_droit_ordi() {
-    $("#navbarright").css("right", "0px");
+    //$("#navbarright").css("right", "0px");
     $("main").css("right", "200px");
+    $("#navbarright").css("width", "200px");
+    $("#navbarright").removeClass("mobile");
+
+    $("#navbarright").show('slide', { direction: "right" }, 1000);
 
     affichage_menu_droit = "afficher";
 }
 function cacher_menu_droit_ordi() {
-    $("#navbarright").css("right", "-200px");
+    //$("#navbarright").css("right", "-200px");
     $("main").css("right", "0px");
+    $("#navbarright").hide('slide', { direction: "right" }, 1000);
+    $("#navbarright").removeClass("mobile");
 
     affichage_menu_droit = "cacher";
 }
@@ -147,11 +163,13 @@ function animation_menus_principaux() {
         } else {//ecran est petit, on mémorise l'action de l'utilisateur
             action_utilisateur_gauche = (affichage_menu_gauche == "afficher") ? "" : "l'utilisateur a affiche le menu"; //si le menu gauche est affiché
         }
-        $("#action_gauche").val(action_utilisateur_gauche);
+        $("#action_utilisateur_gauche").val(action_utilisateur_gauche);
+        $("#affichage_menu_gauche").val(affichage_menu_gauche);
 
 
         if ($(window).width() > 768) {//ecran ordinateur
-            $("main, #navbarleft").css("transition", "left .4s");   
+            //$("main, #navbarleft").css("transition", "left .4s"); 
+              
             affichage_menu_gauche == "afficher" ? cacher_menu_gauche_ordi() : afficher_menu_gauche_ordi(); //si le menu gauche est affiché        
         } else {//ecran mobile
             //$("main, #navbarleft").css("transition", "left .4s");
@@ -168,10 +186,10 @@ function animation_menus_principaux() {
         }
 
         if ($(window).width() > 768) {//ecran pour ordinateur
-            $("main, #navbarright").css("transition", "right .4s");
+            //$("main, #navbarright").css("transition", "right .4s");
             (affichage_menu_droit == "afficher") ? cacher_menu_droit_ordi() : afficher_menu_droit_ordi();//cacher le menu droit ordi
         } else {//ecran mobile
-            $("main, #navbarright").css("transition", "right .4s");
+            //$("main, #navbarright").css("transition", "right .4s");
             (affichage_menu_droit == "afficher") ? cacher_menu_droit_mobile() : afficher_menu_droit_mobile();
         }
 
@@ -181,7 +199,7 @@ function animation_menus_principaux() {
     });
 
 	$("#menu_icon_left").click(function(event){
-        menu_icon();
+        //menu_icon();
     });
 
  

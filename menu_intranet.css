@@ -12,7 +12,7 @@ main {
   padding: 10px;
   position: absolute;
   /*left: 200px;*/
-  right: 200px;
+  /*right: 200px;*/
   background-color: white;
   border-top-left-radius: 4px;
   border-top-right-radius: 4px;
@@ -27,7 +27,9 @@ main {
     background-color: black;
     color: white;
 }
-
+.aide_dev {
+  margin-left: 200px;
+}
 
 /* toute nav */
 
@@ -65,7 +67,7 @@ nav .form-control {
 
 /* navbarleft */
 #navbarleft {
-    width: 200px;
+    /*width: 200px;*/
     height: 100%;
     position: absolute;
     /*left: 0px;*/
@@ -82,6 +84,10 @@ nav .form-control {
 #container_menus {
   display: flex;
 }
+/* #container_menu_right{
+  width: 200px;
+} */
+
 #navbarleft_menus_peres {
     width: 40px;
 }
@@ -142,11 +148,16 @@ nav .form-control {
 
 /* navbarright */
 #navbarright {
-    width: 200px;
+    /*width: 200px;*/
+    height: 100%;
     position: absolute;
     right: 0px;
     z-index: 1;
     background-color: rgb(211,17,69);
+}
+#navbarright.mobile {
+  font-size: x-large;
+  width: 100%;
 }
 
 #navbarright .nav-link, #navbarright .nav-link:active {
