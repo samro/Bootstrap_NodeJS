@@ -25,6 +25,7 @@ function afficher_menu_gauche_mobile() {
     }
     $("#navbarleft").addClass("mobile");
     $("#navbarleft_menus_peres").addClass("mobile");
+    $("#navbarleft").css("width", "100%");
     //if (taille_menu_gauche == "petit") { menu_icon(); }
     //$("#menu_icon_left").css("display", "none"); //supprime la possibilité de réduire le menu gauche sur mobile*/
 
@@ -63,13 +64,15 @@ function afficher_menu_gauche_ordi() { //fonction qui affiche le menu gauche sur
     $("#navbarleft_menus_peres").removeClass("mobile");
 
     //$("#menu_icon_left").css("display", "block");
-    $("#navbarleft").show('slide', { direction: "left" }, 1000);
-    
+    $("#navbarleft").show('slide', { easing: "linear", direction: "left" }, 400);
+     $("main").css("transition", "left 0.4s linear");
+    $("main").css("left", "200px"); 
+   
 
     //condition ternaire
     $("main").css("left", (taille_menu_gauche == 'petit') ? lg_petit_menu_left : "200px");    
     affichage_menu_gauche = "afficher";
-    //$("#test").show('slide', { direction: "left" }, 1000);
+    //$("#test").show('slide', { easing: linear, direction: "left" }, 1000);
 
 }
 
@@ -78,8 +81,8 @@ function cacher_menu_gauche_ordi() {
 
     //condition ternaire
     //$("#navbarleft").css("left", (taille_menu_gauche == 'petit') ? "-" + lg_petit_menu_left : "-200px"); 
-    $("#navbarleft").hide('slide', { direction: "left" }, 1000);
-    $("main").css("transition", "left 1.7s");
+    $("#navbarleft").hide('slide', { easing: "linear", direction: "left" }, 400);
+    $("main").css("transition", "left 0.4s linear");
     $("main").css("left", "0px");
 
     affichage_menu_gauche = "cacher";
@@ -140,16 +143,18 @@ function afficher_menu_droit_ordi() {
     $("#navbarright").css("width", "200px");
     $("#navbarright").removeClass("mobile");
 
-    $("#navbarright").show('slide', { direction: "right" }, 1000);
-
+    $("#navbarright").show('slide', {easing: "linear", direction: "right" }, 400);
+     $("main").css("transition", "right 0.4s linear");
+    $("main").css("right", "200px"); 
     affichage_menu_droit = "afficher";
 }
 function cacher_menu_droit_ordi() {
     //$("#navbarright").css("right", "-200px");
     $("main").css("right", "0px");
-    $("#navbarright").hide('slide', { direction: "right" }, 1000);
+    $("#navbarright").hide('slide', {easing: "linear", direction: "right" }, 400);
     $("#navbarright").removeClass("mobile");
-
+    $("main").css("transition", "right 0.4s linear");
+    $("main").css("right", "0px");
     affichage_menu_droit = "cacher";
 }
 
@@ -214,9 +219,14 @@ function etat_menu() {
     if ($(window).width() <= 768) {
         cacher_menu_gauche_mobile();
         cacher_menu_droit_mobile();
+        $("#rec").hide();
+        $("#detailhome").hide();
+
     } else {
         afficher_menu_gauche_ordi();
         afficher_menu_droit_ordi();
+        $("#icone_recherche").hide();
+       
     }
 }
 
@@ -230,13 +240,31 @@ function taille_fenetre() {
             //utilisateur a affiché le menu gauche
             action_utilisateur_gauche == "l'utilisateur a affiche le menu" ? afficher_menu_gauche_mobile() : cacher_menu_gauche_mobile(); 
             action_utilisateur_droit == "l'utilisateur a affiche le menu" ? afficher_menu_droit_mobile() : cacher_menu_droit_mobile(); 
+            $("#rec").hide();
+            $("#icone_recherche").css("display","block");
+            $("#detailhome").hide();
         }else{// ecran pour ordinateur
             if (action_utilisateur_gauche != "l'utilisateur a masque le menu") { afficher_menu_gauche_ordi(); } //donc j'affiche le menu gauche
             if (action_utilisateur_droit != "l'utilisateur a masque le menu") { afficher_menu_droit_ordi(); }
+            $("#rec").show();
+            $("#icone_recherche").css("display","none");
+            $("#detailhome").show();
         }
         $("#action_utilisateur_droit").val(action_utilisateur_droit);
         $("#affichage_menu_droit").val(affichage_menu_droit);
     });
+
+}
+
+
+function barre_recherche() {
+    $("#icone_recherche").click(function(event){
+        //alert("bonjour");
+        $("#rec").toggle();
+        $("#rec").css("position", "absolute");
+        $("#rec").css("top", "100px");
+    });
+    
 }
 
 
@@ -246,7 +274,7 @@ $(document).ready(function() {
     taille_fenetre();
     etat_menu();
     affiche_menu_enfant();
-
+    barre_recherche();
 });
 
 

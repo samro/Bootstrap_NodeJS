@@ -30,22 +30,21 @@
 	<a class="navbar-brand" id="logo" href="#">
 		<img src="logo_ville.png" alt="Logo_ville" width="90" />
 	</a>
-	
-	
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link" href="#" id="home">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">a</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">b</a>
-      </li>
-		</ul>
-		
 
-    <ul class="navbar-nav ml-auto"> 
+	<ul class="navbar-nav" id="detailhome">
+		<li class="nav-item">
+		  <a class="nav-link" href="#" id="home">Home <span class="sr-only">(current)</span></a>
+		</li>
+		<li class="nav-item">
+		  <a class="nav-link" href="#">a</a>
+		</li>
+		<li class="nav-item">
+		  <a class="nav-link" href="#">b</a>
+		</li>
+		  </ul>
+		
+<div class="ml-auto">
+    <ul id="rec" class="navbar-nav"> 
       <li class="nav-item">
 	   		<form class="" action="#">
 			<div class="input-group input-group-sm" id="barre_recherche">
@@ -64,7 +63,8 @@
 		</form> 
       </li>
 		</ul>
-
+</div>
+		<button id="icone_recherche" ><i class="fas fa-search"></i></button>
 
 		<div class="btn-group">
 			<button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -89,7 +89,7 @@
 	      <i class="fas fa-bars"></i>
 	    </button>
 </nav>	
-
+</div>
 <div class="container-fluid">
 	<div class="row">
 		<nav class="p-0 m-0" id="navbarleft">
@@ -153,26 +153,21 @@
     
         <main class="">
             <h1>Hello, world!</h1>
-            <p>&nbsp;</p>
-            <div class="aide_dev">
-                taille écran<input type="text" id="test_taille">
-                action_utilisateur_gauche<input type="text" id="action_utilisateur_gauche" />
+			<p>&nbsp;</p>
+		
+            <div>
+                taille écran<input type="text" id="test_taille"><br/>	
+                action_utilisateur_gauche<input type="text" id="action_utilisateur_gauche" /><br/>
                 affichage_menu_gauche<input type="text" id="affichage_menu_gauche" />
             </div>                                
 			<div class="aide_dev">
-                action_utilisateur_droit<input type="text" id="action_utilisateur_droit">
+                action_utilisateur_droit<input type="text" id="action_utilisateur_droit"><br/>
                 affichage_menu_droit<input type="text" id="affichage_menu_droit" />
             </div>
 
             <p>&nbsp;</p>
 
-            <div id="menu_bootstrap" style="background-color: purple;">
-                <ul >
-                    <li href="#">bobo jh i i i_ i iujh ihb i ihb ihb ihb ijhb ijhb ih ig iyg iuyg ig ig iyg iygigy iuyg iyg iyg</li>
-                    <li href="#">baba</li>
-                    <li href="#">bibi</li>
-                </ul>
-            </div>
+
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin viverra, lorem in convallis bibendum, tellus lectus molestie neque, et varius purus nisi non lectus. Aenean sed scelerisque quam. Donec vulputate felis ut ultricies ultrices. Praesent consectetur nibh leo, et vulputate erat lacinia et. Fusce a sem urna. Sed luctus facilisis magna, eget bibendum tellus auctor et. Integer ante ligula, mattis tristique fermentum at, condimentum non nibh.</p>
             <p>Sed turpis massa, blandit eu dictum vitae, ornare a nibh. Interdum et malesuada fames ac ante ipsum primis in faucibus. Phasellus quis magna sed tellus venenatis blandit a in arcu. Suspendisse et arcu vehicula purus porta commodo. Ut et elementum tellus. Cras mattis ex vel quam auctor, eget euismod sem elementum. Nullam a bibendum leo. Quisque vel purus lobortis arcu varius auctor.</p>
             <p>Vivamus neque tortor, iaculis ultrices auctor et, volutpat nec odio. Proin id sollicitudin lorem. Vivamus id elit laoreet lacus vehicula facilisis vitae et lacus. Aenean et mauris eu tellus euismod gravida. Ut efficitur purus eu orci posuere luctus. Sed mollis dui nunc. Phasellus a pellentesque mauris, sed volutpat augue. Aliquam quis ante sed felis malesuada aliquam. Integer hendrerit urna metus, et consectetur ligula molestie id. Maecenas dictum aliquet magna, ut venenatis diam cursus et. Suspendisse porttitor vitae orci a vestibulum. Praesent a orci placerat, eleifend urna in, accumsan dolor. Fusce convallis elementum volutpat. Maecenas facilisis ac augue sit amet sagittis.</p>
